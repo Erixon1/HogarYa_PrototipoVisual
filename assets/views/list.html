@@ -1,0 +1,25 @@
+<!-- ============================================================
+     HogarYa · list.html
+     Pantalla Lista de profesionales.
+     ============================================================ -->
+
+<template id="tpl-view-list">
+  <section class="screen" aria-labelledby="title">
+    <div class="field">
+      <label for="district">Distrito</label>
+      <select class="input" id="district" data-a="district"></select>
+    </div>
+    <div class="chips" role="group" aria-label="Filtros y orden">
+      <button class="chip" data-a="filt" data-f="today" data-key="f-today">Disponible hoy</button>
+      <button class="chip" data-a="filt" data-f="price" data-key="f-price">Menor precio</button>
+      <button class="chip" data-a="filt" data-f="rating" data-key="f-rating">Mejor calificados</button>
+    </div>
+    <div data-slot="notice"></div>
+    <p class="sub" role="status"></p>
+    <div data-slot="list"></div>
+    <div class="spacer"></div>
+  </section>
+  <div class="fixedbar actionbar">
+    <div><button class="btn primary" data-a="docompare" data-key="docompare">Comparar 2 seleccionados</button></div>
+  </div>
+</template>

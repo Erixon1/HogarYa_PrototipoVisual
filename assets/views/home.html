@@ -1,0 +1,30 @@
+<!-- ============================================================
+     HogarYa · home.html
+     Pantalla Inicio.
+     ============================================================ -->
+
+<template id="tpl-view-home">
+  <section class="screen" aria-labelledby="title">
+    <div class="hero">
+      <h1 id="title" tabindex="-1">Tu hogar, en buenas manos</h1>
+      <p>Encuentra, compara y contrata profesionales cerca de ti.</p>
+      <div class="field">
+        <label for="district">Tu distrito</label>
+        <select class="input" id="district" data-a="district"></select>
+      </div>
+      <form data-a="search" role="search" class="field">
+        <label for="q">Buscar servicio o profesional</label>
+        <div class="row" style="flex-wrap:wrap">
+          <div class="searchbox" style="flex:1 1 150px;min-width:0">
+            <input class="input" id="q" type="search" autocomplete="off" placeholder="Ej.: gasfitero, pintura">
+          </div>
+          <button class="btn secondary small" type="submit" data-key="searchbtn">Buscar</button>
+        </div>
+      </form>
+    </div>
+    <h2 id="cats-h">¿Qué necesitas hoy?</h2>
+    <ul class="cats" aria-labelledby="cats-h"></ul>
+    <p class="steps" aria-label="Cómo funciona"><span><b>1</b>Busca</span><span><b>2</b>Compara</span><span><b>3</b>Solicita</span><span><b>4</b>Sigue</span></p>
+    <div data-slot="foot"></div>
+  </section>
+</template>

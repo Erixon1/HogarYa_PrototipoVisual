@@ -1,0 +1,43 @@
+<!-- ============================================================
+     HogarYa · profile.html
+     Pantalla Perfil del profesional.
+     ============================================================ -->
+
+<template id="tpl-view-profile">
+  <section class="screen" aria-labelledby="title">
+    <div class="profile-head">
+      <div class="avatar lg" aria-hidden="true"></div>
+      <h2 id="pname"></h2>
+      <p class="sub"></p>
+      <div class="stats">
+        <div><b></b><small>calificación</small></div>
+        <div><b></b><small>trabajos</small></div>
+        <div><b></b><small>experiencia</small></div>
+      </div>
+      <button class="btn secondary small" data-a="fav" style="margin-top:8px"></button>
+    </div>
+    <div class="card">
+      <h2>Precios</h2>
+      <dl class="kv">
+        <div><dt>Visita y diagnóstico</dt><dd></dd></div>
+        <div><dt>Mano de obra desde</dt><dd></dd></div>
+      </dl>
+      <p class="hint">El profesional confirma el precio final antes de empezar.</p>
+    </div>
+    <div class="card">
+      <h2>Próxima disponibilidad</h2>
+      <p style="margin-top:8px"><span class="tag"></span></p>
+    </div>
+    <div class="card">
+      <h2>Opinión reciente</h2>
+      <p style="margin-top:8px"></p>
+    </div>
+    <div class="spacer"></div>
+  </section>
+  <div class="fixedbar actionbar">
+    <div>
+      <button class="btn primary" data-a="solicitar" data-key="solicitar">Solicitar este servicio</button>
+      <p class="hint" style="text-align:center;margin-top:6px">No pagas nada ahora.</p>
+    </div>
+  </div>
+</template>

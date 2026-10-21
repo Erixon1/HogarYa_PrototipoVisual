@@ -1,0 +1,85 @@
+<!-- ============================================================
+     HogarYa · items.html
+     Elementos repetibles: categoría, tarjeta de profesional, opción, solicitud, par etiqueta/valor, paso de la línea de tiempo y fila de la tabla comparativa.
+     ============================================================ -->
+
+<template id="tpl-item-cat">
+  <li>
+    <button class="cat">
+      <span class="ci"></span>
+      <b></b>
+      <small></small>
+    </button>
+  </li>
+</template>
+
+<template id="tpl-item-pro-top">
+  <div class="pro-top">
+    <div class="avatar" aria-hidden="true"></div>
+    <div style="flex:1;min-width:0">
+      <h3 class="ct"><a href="#" data-a="open"></a></h3>
+      <div class="meta"></div>
+      <div class="price"></div>
+    </div>
+    <button class="fav" data-a="fav"></button>
+  </div>
+</template>
+
+<template id="tpl-item-pro-card">
+  <li class="card pro">
+    <div class="pro-foot">
+      <span class="tag"></span>
+      <label class="cmp">
+        <input type="checkbox" data-a="cmp">Comparar<span class="sr"></span>
+      </label>
+    </div>
+  </li>
+</template>
+
+<template id="tpl-item-choice">
+  <label class="choice"><input type="radio"><span></span></label>
+</template>
+
+<template id="tpl-item-request">
+  <li class="card stack">
+    <div class="req-h">
+      <div>
+        <h2 class="ct"></h2>
+        <p class="sub"></p>
+        <p class="code"></p>
+      </div>
+      <div class="stack" style="align-items:flex-end;gap:6px"></div>
+    </div>
+    <div data-slot="timeline"></div>
+    <p></p>
+    <div data-slot="actions"></div>
+  </li>
+</template>
+
+<template id="tpl-item-request-pro">
+  <li class="card stack">
+    <div class="req-h">
+      <div>
+        <h2 class="ct"></h2>
+        <p></p>
+        <p class="meta"></p>
+        <p class="code"></p>
+      </div>
+    </div>
+    <div data-slot="problem"></div>
+    <div data-slot="timeline"></div>
+    <div data-slot="actions"></div>
+  </li>
+</template>
+
+<template id="tpl-item-kv">
+  <div><dt></dt><dd></dd></div>
+</template>
+
+<template id="tpl-item-timeline">
+  <li><span class="dot"></span><span></span></li>
+</template>
+
+<template id="tpl-item-compare-row">
+  <tr><th scope="row"></th><td></td><td></td></tr>
+</template>

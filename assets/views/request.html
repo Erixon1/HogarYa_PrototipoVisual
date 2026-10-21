@@ -1,0 +1,71 @@
+<!-- ============================================================
+     HogarYa · request.html
+     Pantallas de la solicitud en tres pasos y la confirmación de envío.
+     ============================================================ -->
+
+<template id="tpl-view-req1">
+  <section class="screen" aria-labelledby="title">
+    <p class="sub"></p>
+    <form class="stack" data-a="step1" novalidate>
+      <fieldset class="group" id="g-day">
+        <legend>Día <span class="req" aria-hidden="true">*</span><span class="hint"> (obligatorio)</span></legend>
+        <div class="chips"></div>
+        <div data-slot="dayerr"></div>
+      </fieldset>
+      <fieldset class="group" id="g-hour">
+        <legend>Hora <span class="req" aria-hidden="true">*</span><span class="hint"> (obligatorio)</span></legend>
+        <div class="chips"></div>
+        <div data-slot="hourerr"></div>
+      </fieldset>
+      <p class="live-sel" id="sel" role="status"></p>
+      <button class="btn primary" type="submit" data-key="next1">Continuar</button>
+      <button class="btn secondary" type="button" data-a="back" data-key="atras1">Atrás</button>
+    </form>
+    <div data-slot="foot"></div>
+  </section>
+</template>
+
+<template id="tpl-view-req2">
+  <section class="screen" aria-labelledby="title">
+    <form class="stack" data-a="step2" novalidate>
+      <div class="field">
+        <label for="addr">Dirección en <span class="req" aria-hidden="true">*</span></label>
+        <input class="input" id="addr" name="addr" type="text" autocomplete="street-address" placeholder="Ej.: Av. Los Olivos 123, dpto. 4" aria-required="true" value="">
+        <div data-slot="addrerr"></div>
+        <div data-slot="addrhint"></div>
+      </div>
+      <div class="field">
+        <label for="prob">¿Qué problema tienes? (opcional)</label>
+        <textarea class="input" id="prob" name="prob" placeholder="Ej.: Sale agua del caño del baño"></textarea>
+      </div>
+      <button class="btn primary" type="submit" data-key="next2">Continuar</button>
+      <button class="btn secondary" type="button" data-a="back" data-key="atras2">Atrás</button>
+    </form>
+    <div data-slot="foot"></div>
+  </section>
+</template>
+
+<template id="tpl-view-req3">
+  <section class="screen" aria-labelledby="title">
+    <div class="card"><dl class="kv"></dl></div>
+    <p class="notice info"><span></span></p>
+    <button class="btn primary" data-a="confirm" data-key="confirm">Confirmar solicitud</button>
+    <button class="btn secondary" data-a="back" data-key="atras3">Atrás</button>
+    <div data-slot="foot"></div>
+  </section>
+</template>
+
+<template id="tpl-view-sent">
+  <section class="screen" aria-labelledby="title">
+    <div class="success">
+      <div class="big"></div>
+      <h1 id="title" tabindex="-1">¡Solicitud enviada!</h1>
+      <p>Tu código es</p>
+      <div class="codebox"></div>
+      <p></p>
+      <p class="sub">Esperando respuesta del profesional (suele tardar ~10 min).</p>
+    </div>
+    <button class="btn primary" data-a="nav" data-to="requests" data-key="seg">Ver seguimiento</button>
+    <button class="btn secondary" data-a="home" data-key="tohome2">Volver al inicio</button>
+  </section>
+</template>

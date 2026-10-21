@@ -1,0 +1,77 @@
+<!-- ============================================================
+     HogarYa · bloques.html
+     Bloques condicionales: vistos recientemente, resultados, estado vacío, 
+     avisos, mensajes de error, resumen de errores, calificación, ayuda y comparación 
+     vacía.
+     ============================================================ -->
+
+<template id="tpl-blk-recent">
+  <section aria-labelledby="rec-h" class="stack">
+    <h2 id="rec-h">Vistos recientemente</h2>
+  </section>
+</template>
+
+<template id="tpl-blk-services">
+  <section class="stack" aria-labelledby="s1">
+    <h2 id="s1">Servicios</h2>
+    <ul class="cats"></ul>
+  </section>
+</template>
+
+<template id="tpl-blk-pros">
+  <section class="stack" aria-labelledby="s2">
+    <h2 id="s2">Profesionales</h2>
+  </section>
+</template>
+
+<template id="tpl-blk-empty">
+  <div class="empty card">
+    <div class="big"></div>
+    <h2></h2>
+    <p class="sub"></p>
+    <button class="btn secondary"></button>
+  </div>
+</template>
+
+<template id="tpl-blk-notice-alert">
+  <div class="notice" role="alert" id="cmpnote"><span></span></div>
+</template>
+
+<template id="tpl-blk-notice-info">
+  <div class="notice info" role="status"><span></span></div>
+</template>
+
+<template id="tpl-blk-err">
+  <p class="err"><span></span></p>
+</template>
+
+<template id="tpl-blk-err-group">
+  <p class="err" style="margin-top:10px"><span></span></p>
+</template>
+
+<template id="tpl-blk-errsum">
+  <div class="errsum" id="errsum" aria-labelledby="errsum-h">
+    <h2 id="errsum-h"></h2>
+    <ul></ul>
+  </div>
+</template>
+
+<template id="tpl-blk-rate">
+  <fieldset class="group">
+    <legend>¿Cómo fue el servicio?</legend>
+    <div class="rate" id="rate-g"></div>
+    <p class="hint" style="text-align:center;margin-top:6px">1 muy malo · 5 muy bueno</p>
+  </fieldset>
+</template>
+
+<template id="tpl-blk-help">
+  <ol></ol>
+</template>
+
+<template id="tpl-blk-timeline">
+  <ol class="timeline"></ol>
+</template>
+
+<template id="tpl-blk-compare-empty">
+  <section class="screen"><p>Marca dos profesionales en la lista para compararlos.</p></section>
+</template>

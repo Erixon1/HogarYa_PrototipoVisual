@@ -1,0 +1,34 @@
+<!-- ============================================================
+     HogarYa · pro.html
+     Pantallas del profesional: panel de solicitudes y disponibilidad.
+     ============================================================ -->
+
+<template id="tpl-view-proHome">
+  <section class="screen" aria-labelledby="title">
+    <ul class="stack" style="list-style:none;margin:0;padding:0"></ul>
+    <div data-slot="foot"></div>
+  </section>
+</template>
+
+<template id="tpl-view-proAvail">
+  <section class="screen" aria-labelledby="title">
+    <form class="card stack" data-a="saveavail" novalidate>
+      <div class="switch">
+        <span id="sw-l" class="lbl">Disponible hoy</span>
+        <button type="button" role="switch" aria-checked="true" aria-labelledby="sw-l" data-a="sw" data-key="sw"></button>
+      </div>
+      <fieldset class="group">
+        <legend>Días que atiendo</legend>
+        <div class="chips"></div>
+      </fieldset>
+      <div class="field">
+        <label for="price">Precio de visita (S/)</label>
+        <input class="input" id="price" name="price" type="text" inputmode="numeric" autocomplete="off" data-a="price" aria-describedby="price-h price-e">
+        <p class="hint" id="price-h">Escribe solo números, por ejemplo 40.</p>
+        <p class="err" id="price-e" role="alert" hidden><span></span></p>
+      </div>
+      <button class="btn primary" type="submit" data-key="saveavail">Guardar cambios</button>
+    </form>
+    <div data-slot="foot"></div>
+  </section>
+</template>

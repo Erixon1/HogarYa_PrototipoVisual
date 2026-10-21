@@ -1,0 +1,74 @@
+<!-- ============================================================
+     HogarYa · comunes.html
+     Piezas comunes de la aplicación: cabecera, navegación, diálogo, 
+     barra de título y pie.
+     ============================================================ -->
+
+<template id="tpl-header">
+  <header class="top">
+    <div class="wrap">
+      <button class="brand" data-a="home" data-key="brand" aria-label="HogarYa, ir al inicio">
+        <span class="logo"></span><span class="bt">HogarYa</span>
+      </button>
+      <div class="top-actions">
+        <button class="pill help" data-a="help" data-key="help"><span class="lb">Ayuda</span></button>
+        <button class="pill iconbtn" data-a="theme-toggle" data-key="theme"></button>
+        <button class="pill acct" data-a="nav" data-to="account" data-key="acct"></button>
+      </div>
+    </div>
+  </header>
+</template>
+
+<template id="tpl-nav">
+  <nav class="fixedbar bottom" aria-label="Navegación principal">
+    <div><ul></ul></div>
+  </nav>
+</template>
+
+<template id="tpl-nav-item">
+  <li><button data-a="tab"></button></li>
+</template>
+
+<template id="tpl-dialog">
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dlg-t">
+    <h2 id="dlg-t"></h2>
+    <p id="dlg-d"></p>
+    <div data-slot="body"></div>
+    <div class="stack"></div>
+  </div>
+</template>
+
+<template id="tpl-sbar">
+  <div class="sbar">
+    <button class="back" data-a="back" data-key="back" aria-label="Volver"></button>
+    <div class="grow"><h1 id="title" tabindex="-1"></h1><p class="sub"></p></div>
+  </div>
+</template>
+
+<template id="tpl-step-head">
+  <div>
+    <p class="sub" id="stepl">Paso 1 de 3</p>
+    <div class="progress" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1" aria-labelledby="stepl"><i></i></div>
+  </div>
+</template>
+
+<template id="tpl-foot">
+  <p class="foot">Prototipo HogarYa · Versión 3.0 · Datos ilustrativos, no se envía información real.</p>
+</template>
+
+<template id="tpl-blk-appearance">
+  <div class="card">
+    <fieldset class="group">
+      <legend>Apariencia</legend>
+      <div class="seg"></div>
+      <p class="hint theme-note"></p>
+    </fieldset>
+  </div>
+</template>
+
+<template id="tpl-blk-name-field">
+  <div class="field">
+    <label for="name">Nombre <span class="req" aria-hidden="true">*</span></label>
+    <input class="input" id="name" name="name" type="text" autocomplete="name" aria-required="true" value="">
+  </div>
+</template>

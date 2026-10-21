@@ -1,0 +1,45 @@
+/* ============================================================
+   HogarYa · elementos de pantalla
+   Piezas que solo aparecen en una vista concreta: tabla de
+   comparación, cabecera de perfil, pares de datos, barra de
+   progreso, línea de tiempo y confirmación de envío.
+   ============================================================ */
+
+/* tabla comparar */
+.tablewrap{overflow-x:auto}
+table.cmp-t{width:100%;border-collapse:collapse;font-size:.9375rem}
+table.cmp-t th,table.cmp-t td{padding:12px 8px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+table.cmp-t thead th{font-family:var(--font-display);font-size:1rem}
+table.cmp-t tbody th{font-weight:400;color:var(--muted);width:34%}
+table.cmp-t td{font-weight:700}
+
+/* perfil */
+.profile-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;background:var(--tint);border-radius:22px;padding:20px 16px}
+.stats{display:flex;gap:var(--sp-6);margin-top:var(--sp-2)}
+.stats div{display:flex;flex-direction:column;align-items:center}
+.stats b{font-family:var(--font-display);font-size:1.25rem}
+.stats small{color:var(--muted);font-size:.8125rem}
+dl.kv{margin:0;display:flex;flex-direction:column}
+dl.kv>div{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+dl.kv>div:last-child{border-bottom:0}
+dl.kv dt{color:var(--muted)}
+dl.kv dd{margin:0;font-weight:700;text-align:right;min-width:0;overflow-wrap:anywhere}
+dl.kv .chg{display:flex;align-items:center;gap:6px;justify-content:flex-end;flex-wrap:wrap}
+
+/* progreso y línea de tiempo */
+.progress{height:10px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.progress i{display:block;height:100%;background:var(--brand);border-radius:99px}
+ol.timeline{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+ol.timeline li{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;font-size:.75rem;color:var(--muted);position:relative}
+ol.timeline .dot{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--surface-2);border:2px solid var(--line);font-weight:700;font-size:.8125rem;color:var(--muted)}
+ol.timeline li.done .dot{background:var(--ok);border-color:var(--ok);color:var(--on-ok)}
+ol.timeline li.now .dot{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+ol.timeline li.now,ol.timeline li.done{color:var(--ink);font-weight:700}
+.req-h{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.code{font-variant-numeric:tabular-nums;color:var(--muted);font-size:.875rem}
+
+/* confirmación de envío */
+.success{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:8px 0}
+.success .big{width:72px;height:72px;border-radius:50%;background:var(--ok-bg);color:var(--ok);display:grid;place-items:center}
+.success .big .ic{width:36px;height:36px;stroke-width:3}
+.codebox{font-family:var(--font-display);font-weight:800;font-size:1.5rem;letter-spacing:.04em;background:var(--surface-2);padding:6px 16px;border-radius:12px;font-variant-numeric:tabular-nums}

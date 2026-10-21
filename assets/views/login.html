@@ -1,0 +1,34 @@
+<!-- ============================================================
+     HogarYa · login.html
+     Pantalla Ingresar / Crear cuenta.
+     ============================================================ -->
+
+<template id="tpl-view-login">
+  <section class="screen" aria-labelledby="title">
+    <div data-slot="notice"></div>
+    <div class="seg" role="radiogroup" aria-label="Acción"></div>
+    <form class="stack" data-a="login" novalidate>
+      <div data-slot="errsum"></div>
+      <fieldset class="group">
+        <legend>Soy</legend>
+        <div class="chips"></div>
+      </fieldset>
+      <div data-slot="name"></div>
+      <div class="field">
+        <label for="email">Correo <span class="req" aria-hidden="true">*</span></label>
+        <input class="input" id="email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="nombre@correo.com" aria-required="true" value="">
+        <div data-slot="emailerr"></div>
+      </div>
+      <div class="field">
+        <label for="pass">Contraseña <span class="req" aria-hidden="true">*</span></label>
+        <input class="input" id="pass" name="pass" type="password" autocomplete="current-password" aria-required="true" value="">
+        <div data-slot="passerr"></div>
+      </div>
+      <p class="hint">Mínimo 6 caracteres.</p>
+      <button class="btn primary" type="submit" data-key="loginbtn">Ingresar</button>
+      <button class="btn secondary" type="button" data-a="demo" data-key="demo">Entrar con cuenta de ejemplo</button>
+    </form>
+    <p class="hint">Prototipo: la cuenta de ejemplo usa el rol que elijas arriba. No se envía ningún dato real.</p>
+    <div data-slot="foot"></div>
+  </section>
+</template>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FAF7F3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#171210" media="(prefers-color-scheme: dark)">
+<title>HogarYa Prototipo</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23B5360B'/%3E%3Cpath d='M4 26h24M7 26V12l9-6 9 6v14M14 26v-8h4v8' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+<!-- El tema se resuelve antes del primer pintado para evitar el destello blanco. -->
+<script>
+(function () {
+  var p = 'auto';
+  try { p = localStorage.getItem('hogarya-theme') || 'auto'; } catch (e) { }
+  if (!/^(light|dark|auto)$/.test(p)) p = 'auto';
+  var dark = p === 'dark' || (p === 'auto' && !!window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
+  var h = document.documentElement;
+  h.setAttribute('data-theme', dark ? 'dark' : 'light');
+  h.setAttribute('data-theme-pref', p);
+})();
+</script>
+
+<!-- Hojas de estilo: se cargan en orden porque el orden define la prioridad. -->
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/views.css">
+<link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Saltar al contenido</a>
+<noscript><div class="nojs" role="alert"><h1>HogarYa necesita JavaScript</h1><p>Este prototipo funciona con JavaScript. Actívalo en la configuración de tu navegador y vuelve a cargar la página.</p></div></noscript>
+
+<!-- Puntos de montaje: el contenido se dibuja desde JavaScript. -->
+<div id="shell"></div>
+<div id="scrim" class="scrim" hidden></div>
+<div id="toast" class="toast" role="status" hidden></div>
+<div id="live" class="sr" aria-live="polite" aria-atomic="true"></div>
+
+<!-- Estado de carga: se retira cuando las plantillas están listas. -->
+<div id="cargando" class="carga" role="status">
+  <h1>HogarYa</h1>
+  <p>Cargando el prototipo…</p>
+</div>
+
+<!-- Lógica de la aplicación. "defer" conserva el orden de ejecución
+     y permite abrir el archivo directamente desde el disco (file://). -->
+<script src="assets/js/core/namespace.js" defer></script>
+<script src="assets/js/core/util.js" defer></script>
+<script src="assets/js/core/icons.js" defer></script>
+<script src="assets/js/core/data.js" defer></script>
+<script src="assets/js/core/state.js" defer></script>
+<script src="assets/js/core/router.js" defer></script>
+<script src="assets/js/ui/template.js" defer></script>
+<script src="assets/js/ui/feedback.js" defer></script>
+<script src="assets/js/ui/theme.js" defer></script>
+<script src="assets/js/ui/chrome.js" defer></script>
+<script src="assets/js/ui/cards.js" defer></script>
+<script src="assets/js/ui/dialog.js" defer></script>
+<script src="assets/js/ui/render.js" defer></script>
+<script src="assets/js/ui/views/home.js" defer></script>
+<script src="assets/js/ui/views/search.js" defer></script>
+<script src="assets/js/ui/views/list.js" defer></script>
+<script src="assets/js/ui/views/compare.js" defer></script>
+<script src="assets/js/ui/views/profile.js" defer></script>
+<script src="assets/js/ui/views/login.js" defer></script>
+<script src="assets/js/ui/views/request.js" defer></script>
+<script src="assets/js/ui/views/tracking.js" defer></script>
+<script src="assets/js/ui/views/account.js" defer></script>
+<script src="assets/js/ui/views/pro.js" defer></script>
+<script src="assets/js/actions.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+
+</body>
+</html>

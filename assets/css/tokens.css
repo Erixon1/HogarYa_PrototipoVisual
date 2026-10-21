@@ -1,0 +1,29 @@
+/* ============================================================
+   HogarYa · tokens de diseño
+   Concepto: app móvil de una sola columna (390 px de referencia),
+   cabecera fija, navegación inferior y contenido en tarjetas sobrias.
+   El color de marca se usa solo en acciones y estados; el resto,
+   neutros cálidos. Todos los valores de color viven aquí.
+   ============================================================ */
+:root{
+  --bg:#FAF7F3; --surface:#FFFFFF; --surface-2:#F3ECE4; --ink:#2A1F18; --muted:#5F5148; --line:#D9CCC0;
+  --brand:#B5360B; --brand-strong:#962C08; --on-brand:#FFFFFF; --tint:#FBE6D9; --tint-ink:#7A2706;
+  --ok:#1B6B3B; --ok-bg:#DFF3E5; --warn-bg:#FFF0C7; --warn-ink:#6B4A00; --danger:#B42318; --danger-bg:#FDE8E6;
+  --focus:#1D4ED8; --star:#B45309; --scrim:rgba(30,20,12,.55); --shadow:0 1px 2px rgba(60,35,15,.08),0 4px 14px rgba(60,35,15,.06);
+  --on-danger:#FFFFFF; --on-ok:#FFFFFF;
+  --font-body:"Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+  --font-display:"Bricolage Grotesque","Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:20px; --sp-6:24px;
+  --fs-xs:.8125rem; --fs-sm:.9375rem; --fs-base:1rem; --fs-md:1.125rem; --fs-lg:1.25rem; --fs-xl:1.5rem; --fs-2xl:1.75rem;
+  --nav-h:64px;
+  color-scheme:light;
+}
+
+/* Modo oscuro: un solo bloque. El script del <head> resuelve "Automático"
+   y aplica data-theme, de modo que el tema nunca depende del media query. */
+:root[data-theme="dark"]{
+  --bg:#171210; --surface:#231C18; --surface-2:#2E2520; --ink:#F6EEE8; --muted:#C9BBB0; --line:#57483E;
+  --brand:#FF9A6E; --brand-strong:#FFB08C; --on-brand:#2B1002; --tint:#3B2318; --tint-ink:#FFC7AB;
+  --ok:#6FD39A; --ok-bg:#16301F; --warn-bg:#3A2D0B; --warn-ink:#F5D27A; --danger:#FF8F85; --danger-bg:#3A1B18;
+  --focus:#8FB0FF; --star:#F2B84B; --scrim:rgba(0,0,0,.65); --shadow:0 1px 2px rgba(0,0,0,.45),0 6px 18px rgba(0,0,0,.28);
+  --on-danger:#2B0A07; --on-ok:#0C2415; color-scheme:dark}

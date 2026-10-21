@@ -1,0 +1,30 @@
+<!-- ============================================================
+     HogarYa · account.html
+     Pantalla Mi perfil (con y sin sesión iniciada).
+     ============================================================ -->
+
+<template id="tpl-view-account">
+  <section class="screen" aria-labelledby="title">
+    <div class="card">
+      <div class="row">
+        <div class="avatar" aria-hidden="true"></div>
+        <div style="min-width:0">
+          <h2></h2>
+          <p class="sub"></p>
+        </div>
+      </div>
+      <dl class="kv" style="margin-top:8px"></dl>
+    </div>
+    <div data-slot="appearance"></div>
+    <button class="btn secondary" data-a="logout" data-key="logout">Cerrar sesión</button>
+    <button class="linkbtn" data-a="reset" data-key="reset">Reiniciar datos de la demostración</button>
+    <div data-slot="foot"></div>
+  </section>
+</template>
+
+<template id="tpl-view-account-guest">
+  <section class="screen" aria-labelledby="title">
+    <div data-slot="content"></div>
+    <div data-slot="appearance"></div>
+  </section>
+</template>

@@ -1,0 +1,9 @@
+/* ============================================================
+   HogarYa · tipografías
+   Atkinson Hyperlegible → texto (legibilidad en pantallas pequeñas)
+   Bricolage Grotesque   → títulos y cifras destacadas
+   ============================================================ */
+@font-face{font-family:"Atkinson Hyperlegible";font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/atkinson-hyperlegible-400.woff2") format("woff2")}
+@font-face{font-family:"Atkinson Hyperlegible";font-style:normal;font-weight:700;font-display:swap;src:url("../fonts/atkinson-hyperlegible-700.woff2") format("woff2")}
+@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-weight:700;font-display:swap;src:url("../fonts/bricolage-grotesque-700.woff2") format("woff2")}
+@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-weight:800;font-display:swap;src:url("../fonts/bricolage-grotesque-800.woff2") format("woff2")}
