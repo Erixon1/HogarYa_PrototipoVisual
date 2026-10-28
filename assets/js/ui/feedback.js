@@ -8,7 +8,7 @@
 
   var liveT;
 
-  /* Anuncio para lectores de pantalla (región aria-live). */
+  /* Anuncio para lectores de pantalla */
   HY.say = function (msg) {
     var l = HY.$('#live');
     l.textContent = '';

@@ -8,8 +8,8 @@
 @media (min-width:700px){body{background:var(--surface-2)} main,.sbar{} .wrap{background:transparent}}
 @media (min-height:620px) and (min-width:700px){.scrim{align-items:center}}
 
-/* cabecera estrecha: la cuenta queda como avatar (su nombre accesible se conserva);
-   sin sesión, "Ingresar" conserva su texto y "Ayuda" queda como icono; a ≤359 px la marca muestra solo el logo */
+/* cabecera estrecha: la cuenta queda como avatar;
+   sin sesión, "Ingresar" y "Ayuda" ficam como ícono */
 @media (max-width:400px){.pill .lb-acct,.top.guest .pill.help .lb{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.pill.acct,.top.guest .pill.help{width:44px;padding:0}}
 @media (max-width:359px){.pill .lb,.top.guest .brand .bt{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.pill.help{width:44px;padding:0}.cats{gap:var(--sp-2)}.cat b{font-size:.875rem}.cat{padding:var(--sp-3)}}
 

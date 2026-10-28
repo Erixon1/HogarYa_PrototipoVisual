@@ -32,7 +32,7 @@
     main.setAttribute('tabindex', '-1');
     main.setAttribute('aria-label', HY.TITLES[sc]);
     var view = HY.views[sc];
-    if (!view) return;   /* la plantilla de esta pantalla aún no está cargada */
+    if (!view) return;
     main.appendChild(view());
 
     var wrap = HY.el('div', 'wrap');
