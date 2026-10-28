@@ -66,6 +66,47 @@
   </div>
 </template>
 
+<template id="tpl-blk-a11y">
+  <div class="card a11y-panel stack" style="gap:14px">
+    <h3 style="display:flex;align-items:center;gap:8px">
+      Accesibilidad y diseño inclusivo
+    </h3>
+    
+    <!-- Visual: Daltonismo -->
+    <div class="field">
+      <label for="a11y-cb">Paleta de colores para daltonismo</label>
+      <select class="input" id="a11y-cb" data-a="a11y-cb">
+        <option value="none">Estándar (sin filtro)</option>
+        <option value="deuteranopia">Deuteranopía (verde débil)</option>
+        <option value="protanopia">Protanopía (rojo débil)</option>
+        <option value="tritanopia">Tritanopía (azul débil)</option>
+        <option value="monochrome">Acromático / Monocromo</option>
+      </select>
+      <p class="hint">Ajusta contrastes y matices de color para garantizar la distinción visual de estados.</p>
+    </div>
+
+    <!-- Visual / Cognitiva: Tamaño de texto -->
+    <div class="field">
+      <label for="a11y-font">Tamaño del texto</label>
+      <select class="input" id="a11y-font" data-a="a11y-font">
+        <option value="normal">Normal (predeterminado)</option>
+        <option value="large">Grande (+15% legibilidad)</option>
+        <option value="xlarge">Extra grande (+30% baja visión)</option>
+      </select>
+      <p class="hint">Aumenta el tamaño tipográfico manteniendo el orden del diseño.</p>
+    </div>
+
+    <!-- Auditiva / Ubicua: Vibración táctil -->
+    <div class="switch">
+      <div>
+        <b class="lbl" style="display:block">Vibración háptica</b>
+        <span class="hint">Confirmar avisos y acciones con vibración en el dispositivo.</span>
+      </div>
+      <button type="button" role="switch" id="sw-vib" data-a="a11y-vib" aria-checked="false" aria-label="Activar vibración táctil"></button>
+    </div>
+  </div>
+</template>
+
 <template id="tpl-blk-name-field">
   <div class="field">
     <label for="name">Nombre <span class="req" aria-hidden="true">*</span></label>

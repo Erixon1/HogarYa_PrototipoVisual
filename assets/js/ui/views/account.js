@@ -26,6 +26,7 @@
         'Ingresa para ver tus datos y tus solicitudes.',
         { label: 'Ingresar', kind: 'primary', action: 'needlogin', key: 'needlogin' }));
       HY.put(root, 'appearance', HY.appearanceNode());
+      HY.put(root, 'a11y', HY.a11yNode());
       return frag;
     }
 
@@ -46,6 +47,7 @@
     }
 
     HY.put(root2, 'appearance', HY.appearanceNode());
+    HY.put(root2, 'a11y', HY.a11yNode());
     HY.put(root2, 'foot', HY.footNode());
     return frag2;
   };

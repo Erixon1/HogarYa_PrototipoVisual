@@ -18,7 +18,6 @@
     return /^(light|dark|auto)$/.test(p) ? p : 'auto';
   })();
 
-  /* Tema efectivo: el que se está mostrando ahora mismo. */
   HY.themeNow = function () {
     return themePref === 'dark' || (themePref === 'auto' && !!(mql && mql.matches)) ? 'dark' : 'light';
   };
@@ -49,6 +48,68 @@
     else if (mql.addListener) mql.addListener(onSys);
   }
 
+  /* ============================================================
+     Ajustes de accesibilidad inclusiva
+     - Daltonismo: deuteranopia, protanopia, tritanopia, monochrome, none
+     - Tamaño de fuente: normal, large, xlarge
+     - Vibración háptica
+     ============================================================ */
+  var CB_KEY = 'hogarya-colorblind';
+  var FONT_KEY = 'hogarya-fontsize';
+  var VIB_KEY = 'hogarya-vibration';
+
+  var colorblindPref = (function () {
+    try { return localStorage.getItem(CB_KEY) || 'none'; } catch (e) { return 'none'; }
+  })();
+
+  var fontPref = (function () {
+    try { return localStorage.getItem(FONT_KEY) || 'normal'; } catch (e) { return 'normal'; }
+  })();
+
+  var vibrationPref = (function () {
+    try { return localStorage.getItem(VIB_KEY) === 'true'; } catch (e) { return false; }
+  })();
+
+  HY.colorblindNow = function () { return colorblindPref; };
+  HY.fontNow = function () { return fontPref; };
+  HY.vibrationNow = function () { return vibrationPref; };
+
+  HY.setColorblind = function (cb) {
+    colorblindPref = cb;
+    try { localStorage.setItem(CB_KEY, cb); } catch (e) { }
+    document.documentElement.setAttribute('data-colorblind', cb);
+    HY.say('Paleta de daltonismo cambiada a: ' + cb);
+  };
+
+  HY.setFontSize = function (size) {
+    fontPref = size;
+    try { localStorage.setItem(FONT_KEY, size); } catch (e) { }
+    document.documentElement.setAttribute('data-font-size', size);
+    HY.say('Tamaño de texto ajustado a: ' + size);
+  };
+
+  HY.setVibration = function (enable) {
+    vibrationPref = !!enable;
+    try { localStorage.setItem(VIB_KEY, String(vibrationPref)); } catch (e) { }
+    if (vibrationPref && navigator.vibrate) {
+      navigator.vibrate([80, 40, 80]);
+    }
+    HY.say(vibrationPref ? 'Vibración táctil activada' : 'Vibración táctil desactivada');
+  };
+
+  HY.vibratePulse = function (pattern) {
+    if (vibrationPref && navigator.vibrate) {
+      try { navigator.vibrate(pattern || [120, 60, 120]); } catch (e) { }
+    }
+  };
+
+  HY.applyA11y = function () {
+    document.documentElement.setAttribute('data-colorblind', colorblindPref);
+    document.documentElement.setAttribute('data-font-size', fontPref);
+  };
+
+  /* Inicialización combinada */
   HY.applyTheme();
+  HY.applyA11y();
 
 })(window.HY);

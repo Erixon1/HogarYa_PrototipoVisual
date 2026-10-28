@@ -19,6 +19,14 @@
   var h = document.documentElement;
   h.setAttribute('data-theme', dark ? 'dark' : 'light');
   h.setAttribute('data-theme-pref', p);
+
+  /* Accesibilidad inclusiva: daltonismo y tamaño de texto */
+  try {
+    var cb = localStorage.getItem('hogarya-colorblind') || 'none';
+    var fs = localStorage.getItem('hogarya-fontsize') || 'normal';
+    h.setAttribute('data-colorblind', cb);
+    h.setAttribute('data-font-size', fs);
+  } catch (e) { }
 })();
 </script>
 

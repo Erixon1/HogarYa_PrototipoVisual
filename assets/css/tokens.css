@@ -27,3 +27,63 @@
   --ok:#6FD39A; --ok-bg:#16301F; --warn-bg:#3A2D0B; --warn-ink:#F5D27A; --danger:#FF8F85; --danger-bg:#3A1B18;
   --focus:#8FB0FF; --star:#F2B84B; --scrim:rgba(0,0,0,.65); --shadow:0 1px 2px rgba(0,0,0,.45),0 6px 18px rgba(0,0,0,.28);
   --on-danger:#2B0A07; --on-ok:#0C2415; color-scheme:dark}
+
+/* Paletas de daltonismo y contraste */
+:root[data-colorblind="deuteranopia"]{
+  --ok:#0D549B; --ok-bg:#D8EAFD; --on-ok:#FFFFFF;
+  --brand:#8F2B07; --brand-strong:#732003; --tint:#FCE9DD; --tint-ink:#5E1A02;
+  --danger:#D9381E; --danger-bg:#FEEBE8;
+}
+:root[data-theme="dark"][data-colorblind="deuteranopia"]{
+  --ok:#6CB4FE; --ok-bg:#102947; --on-ok:#041427;
+  --brand:#FF9E75; --brand-strong:#FFB494; --on-brand:#2C0F02; --tint:#3B2318; --tint-ink:#FFC7AB;
+  --danger:#FFA296; --danger-bg:#3A1B18;
+}
+
+/* Protanopía (rojo débil): tonos dorados/ámbar y azul ultramar */
+:root[data-colorblind="protanopia"]{
+  --brand:#0D549B; --brand-strong:#093E73; --on-brand:#FFFFFF; --tint:#E1EFFF; --tint-ink:#062E56;
+  --danger:#8F2B07; --danger-bg:#FCE9DD;
+  --ok:#056976; --ok-bg:#D4F4F9; --on-ok:#FFFFFF;
+}
+:root[data-theme="dark"][data-colorblind="protanopia"]{
+  --brand:#70B7FF; --brand-strong:#94CBFF; --on-brand:#041A33; --tint:#122942; --tint-ink:#BCE0FF;
+  --danger:#FF9E75; --danger-bg:#3A1A12;
+  --ok:#5EE2F5; --ok-bg:#083138; --on-ok:#02171B;
+}
+
+/* Tritanopía (azul débil): tonos rojos y turquesa/cian de alto contraste */
+:root[data-colorblind="tritanopia"]{
+  --brand:#C02404; --brand-strong:#991B00; --tint:#FFE6DF; --tint-ink:#6A1400;
+  --ok:#0A7A78; --ok-bg:#D6F7F6; --on-ok:#FFFFFF;
+  --focus:#C02404;
+}
+:root[data-theme="dark"][data-colorblind="tritanopia"]{
+  --brand:#FF886E; --brand-strong:#FFA38F; --on-brand:#2C0900; --tint:#381C16; --tint-ink:#FFC2B5;
+  --ok:#4EE4E1; --ok-bg:#093332; --on-ok:#011817;
+  --danger:#FF9E75; --danger-bg:#3A1A12;
+  --focus:#FF886E;
+}
+
+/* Acromático / Monocromo (alto contraste puro blanco/negro) */
+:root[data-colorblind="monochrome"]{
+  --brand:#111111; --brand-strong:#000000; --on-brand:#FFFFFF; --tint:#E5E5E5; --tint-ink:#111111;
+  --ok:#222222; --ok-bg:#EFEFEF; --on-ok:#FFFFFF;
+  --danger:#000000; --danger-bg:#E8E8E8; --on-danger:#FFFFFF;
+  --focus:#000000; --line:#777777;
+}
+:root[data-theme="dark"][data-colorblind="monochrome"]{
+  --brand:#EEEEEE; --brand-strong:#FFFFFF; --on-brand:#000000; --tint:#333333; --tint-ink:#FFFFFF;
+  --ok:#DDDDDD; --ok-bg:#222222; --on-ok:#000000;
+  --danger:#FFFFFF; --danger-bg:#2A2A2A; --on-danger:#000000;
+  --focus:#FFFFFF; --line:#888888;
+}
+
+/* Escalado de fuentes (Baja visión / Cognitivo) */
+:root[data-font-size="large"]{
+  font-size:18px;
+}
+:root[data-font-size="xlarge"]{
+  font-size:20px;
+}
+

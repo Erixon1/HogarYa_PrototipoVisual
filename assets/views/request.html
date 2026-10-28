@@ -48,6 +48,13 @@
 <template id="tpl-view-req3">
   <section class="screen" aria-labelledby="title">
     <div class="card"><dl class="kv"></dl></div>
+    <div class="switch card" style="padding:12px 16px">
+      <div>
+        <b class="lbl" style="display:block">Vibración háptica opcional</b>
+        <span class="hint">Recibe confirmación y cambios de estado por vibración en tu dispositivo.</span>
+      </div>
+      <button type="button" role="switch" id="sw-req-vib" data-a="a11y-vib" aria-checked="false" aria-label="Confirmar aviso con vibración táctil"></button>
+    </div>
     <p class="notice info"><span></span></p>
     <button class="btn primary" data-a="confirm" data-key="confirm">Confirmar solicitud</button>
     <button class="btn secondary" data-a="back" data-key="atras3">Atrás</button>

@@ -107,4 +107,25 @@
     return frag;
   };
 
+  /* ---------- tarjeta de accesibilidad inclusiva ---------- */
+
+  HY.a11yNode = function () {
+    var frag = HY.tpl('tpl-blk-a11y');
+    var root = frag.firstElementChild;
+
+    var cbSelect = root.querySelector('#a11y-cb');
+    if (cbSelect) cbSelect.value = HY.colorblindNow();
+
+    var fontSelect = root.querySelector('#a11y-font');
+    if (fontSelect) fontSelect.value = HY.fontNow();
+
+    var vibBtn = root.querySelector('#sw-vib');
+    if (vibBtn) {
+      var isVib = HY.vibrationNow();
+      vibBtn.setAttribute('aria-checked', String(isVib));
+    }
+
+    return frag;
+  };
+
 })(window.HY);
