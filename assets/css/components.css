@@ -129,3 +129,70 @@ textarea.input{min-height:96px;resize:vertical}
 .nojs{max-width:440px;margin:var(--sp-6) auto;padding:var(--sp-4);border:2px solid var(--line);border-radius:18px;background:var(--surface)}
 .carga{max-width:440px;margin:var(--sp-6) auto;padding:var(--sp-5);border:2px solid var(--line);border-radius:18px;background:var(--surface);text-align:center}
 .carga p{color:var(--muted);margin-top:var(--sp-2)}
+
+/* ============================================================
+   Guía interactiva paso a paso (Tour asistido)
+   ============================================================ */
+.guide-highlight{
+  position:relative!important;
+  z-index:90!important;
+  outline:4px solid var(--brand)!important;
+  outline-offset:4px!important;
+  box-shadow:0 0 0 9999px rgba(0,0,0,0.65), 0 0 20px rgba(181,54,11,0.6)!important;
+  border-radius:12px;
+  transition:all .25s ease-out;
+}
+.guide-popover{
+  position:fixed;
+  z-index:95;
+  bottom:max(80px, calc(var(--nav-h) + 24px));
+  left:50%;
+  transform:translateX(-50%);
+  width:calc(100% - 32px);
+  max-width:400px;
+  background:var(--surface);
+  border:2px solid var(--brand);
+  border-radius:18px;
+  padding:16px 18px;
+  box-shadow:0 12px 32px rgba(0,0,0,.35);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  animation:guideSlideUp .25s ease-out;
+}
+@keyframes guideSlideUp{
+  from{transform:translate(-50%, 20px);opacity:0}
+  to{transform:translate(-50%, 0);opacity:1}
+}
+.guide-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+}
+.guide-step-tag{
+  font-size:.8125rem;
+  font-weight:800;
+  text-transform:uppercase;
+  background:var(--tint);
+  color:var(--tint-ink);
+  padding:4px 10px;
+  border-radius:99px;
+}
+.guide-desc{
+  font-size:.9375rem;
+  line-height:1.45;
+  color:var(--ink);
+}
+.guide-actions{
+  display:flex;
+  gap:8px;
+  justify-content:flex-end;
+  margin-top:4px;
+}
+.guide-actions .btn{
+  min-height:42px;
+  padding:6px 14px;
+  font-size:.9rem;
+}
+

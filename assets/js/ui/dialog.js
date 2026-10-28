@@ -63,7 +63,152 @@
     dlgOpenerKey = null;
   };
 
-  /* Ayuda contextual: cambia según la pantalla en la que se esté. */
+  /* ============================================================
+     Guía interactiva paso a paso con foco en cada acción (Tour)
+     ============================================================ */
+  var tourState = { active: false, screen: null, index: 0, steps: [] };
+
+  function removeTourElements() {
+    var prev = document.querySelector('.guide-highlight');
+    if (prev) prev.classList.remove('guide-highlight');
+    var pop = document.getElementById('guide-popover');
+    if (pop) pop.remove();
+  }
+
+  HY.closeTour = function () {
+    tourState.active = false;
+    removeTourElements();
+    var t = HY.$('#title');
+    if (t) t.focus();
+    HY.say('Guía paso a paso finalizada.');
+  };
+
+  HY.showTourStep = function (idx) {
+    var s = tourState.steps;
+    if (!s || idx < 0 || idx >= s.length) {
+      HY.closeTour();
+      return;
+    }
+    tourState.index = idx;
+    var item = s[idx];
+
+    removeTourElements();
+
+    var targetEl = document.querySelector(item.sel);
+    if (targetEl) {
+      targetEl.classList.add('guide-highlight');
+      targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      targetEl.focus();
+    }
+
+    var pop = document.createElement('div');
+    pop.id = 'guide-popover';
+    pop.className = 'guide-popover';
+    pop.setAttribute('role', 'region');
+    pop.setAttribute('aria-label', 'Guía paso a paso');
+
+    var hdr = document.createElement('div');
+    hdr.className = 'guide-header';
+    var tag = document.createElement('span');
+    tag.className = 'guide-step-tag';
+    tag.textContent = 'Paso ' + (idx + 1) + ' de ' + s.length;
+    var title = document.createElement('strong');
+    title.textContent = item.title;
+    hdr.appendChild(tag);
+    hdr.appendChild(title);
+
+    var desc = document.createElement('p');
+    desc.className = 'guide-desc';
+    desc.textContent = item.desc;
+
+    var act = document.createElement('div');
+    act.className = 'guide-actions';
+
+    if (idx > 0) {
+      var prevBtn = document.createElement('button');
+      prevBtn.className = 'btn secondary';
+      prevBtn.textContent = 'Anterior';
+      prevBtn.onclick = function () { HY.showTourStep(idx - 1); };
+      act.appendChild(prevBtn);
+    }
+
+    var nextBtn = document.createElement('button');
+    nextBtn.className = 'btn primary';
+    nextBtn.textContent = idx === s.length - 1 ? '¡Listo!' : 'Siguiente paso';
+    nextBtn.onclick = function () {
+      if (idx === s.length - 1) HY.closeTour();
+      else HY.showTourStep(idx + 1);
+    };
+    act.appendChild(nextBtn);
+
+    var closeBtn = document.createElement('button');
+    closeBtn.className = 'linkbtn';
+    closeBtn.textContent = 'Salir de guía';
+    closeBtn.onclick = function () { HY.closeTour(); };
+    act.appendChild(closeBtn);
+
+    pop.appendChild(hdr);
+    pop.appendChild(desc);
+    pop.appendChild(act);
+
+    document.body.appendChild(pop);
+
+    HY.say('Paso ' + (idx + 1) + ' de ' + s.length + ': ' + item.title + '. ' + item.desc);
+  };
+
+  HY.startTour = function (screenKey) {
+    var TOURS = {
+      home: [
+        { sel: '#district', title: 'Elige tu distrito', desc: 'Selecciona la zona donde necesitas la atención para encontrar profesionales cercanos.' },
+        { sel: '#q', title: 'Buscador de servicios', desc: 'Escribe el oficio o el problema directamente (ej.: gasfitero, cableado).' },
+        { sel: '.cats', title: 'Categorías principales', desc: 'O toca directamente una de las categorías para explorar a los especialistas.' }
+      ],
+      list: [
+        { sel: '[data-f="today"]', title: 'Filtro disponible hoy', desc: 'Activa este filtro si requieres atención de urgencia para el mismo día.' },
+        { sel: '.cmp', title: 'Casilla comparar', desc: 'Marca hasta 2 profesionales para ver frente a frente sus precios y valoraciones.' },
+        { sel: '.pro h3 a', title: 'Perfil del profesional', desc: 'Toca el nombre del especialista para revisar opiniones y contratarlo.' }
+      ],
+      profile: [
+        { sel: '.stats', title: 'Reputación y experiencia', desc: 'Comprueba el promedio de estrellas y la cantidad de trabajos completados.' },
+        { sel: '.card:nth-of-type(1)', title: 'Tarifario transparente', desc: 'Revisa el costo de la visita de diagnóstico y el estimado de mano de obra.' },
+        { sel: '[data-key="solicitar"]', title: 'Solicitar servicio', desc: 'Inicia el formulario en 3 pasos. ¡No pagas nada al enviar la solicitud!' }
+      ],
+      req1: [
+        { sel: '#g-day', title: 'Elige el día', desc: 'Selecciona una de las fechas disponibles para la visita técnica.' },
+        { sel: '#g-hour', title: 'Elige el horario', desc: 'Escoge el rango de horas que mejor se acomode a tus horarios.' },
+        { sel: '#sel', title: 'Resumen en tiempo real', desc: 'Aquí confirmas la selección que vas realizando antes de continuar.' },
+        { sel: '[data-key="next1"]', title: 'Avanzar al paso 2', desc: 'Pulsa continuar para ingresar la dirección del domicilio.' }
+      ],
+      req2: [
+        { sel: '#addr', title: 'Dirección del servicio', desc: 'Ingresa la calle, avenida, número y referencia de tu vivienda.' },
+        { sel: '#prob', title: 'Describe el problema', desc: 'Opcionalmente añade detalles de la falla para que el técnico venga preparado.' },
+        { sel: '[data-key="next2"]', title: 'Avanzar al resumen', desc: 'Continúa al paso final de revisión y confirmación.' }
+      ],
+      req3: [
+        { sel: 'dl.kv', title: 'Revisión final', desc: 'Verifica los datos; puedes pulsar "Cambiar" si deseas modificar la fecha o dirección.' },
+        { sel: '#sw-req-vib', title: 'Vibración opcional', desc: 'Activa este interruptor si deseas recibir confirmación háptica en tu dispositivo.' },
+        { sel: '[data-key="confirm"]', title: 'Confirmar solicitud', desc: 'Envía la solicitud al profesional de forma segura.' }
+      ],
+      sent: [
+        { sel: '.codebox', title: 'Código de solicitud', desc: 'Guarda este código para cualquier consulta o seguimiento de tu orden.' },
+        { sel: '[data-key="seg"]', title: 'Ver seguimiento', desc: 'Accede a la línea de tiempo en tiempo real para ver el estado de tu técnico.' }
+      ],
+      requests: [
+        { sel: '.timeline', title: 'Línea de tiempo', desc: 'Observa en tiempo real si el técnico aceptó, está en camino o finalizó.' }
+      ],
+      account: [
+        { sel: '.a11y-panel', title: 'Opciones de accesibilidad', desc: 'Ajusta la paleta para daltonismo, tamaño de lectura y vibración táctil.' }
+      ]
+    };
+
+    var steps = TOURS[screenKey] || TOURS.home;
+    tourState.active = true;
+    tourState.screen = screenKey;
+    tourState.steps = steps;
+    HY.showTourStep(0);
+  };
+
+  /* Ayuda contextual: permite leer el resumen o iniciar el tour interactivo enfocado */
   HY.helpFor = function () {
     var s = HY.state().screen;
     var H = {
@@ -91,7 +236,16 @@
     HY.openDialog({
       title: h[0],
       body: body,
-      actions: [{ label: 'Entendido', kind: 'primary', fn: function () { } }]
+      actions: [
+        {
+          label: 'Iniciar guía paso a paso',
+          kind: 'primary',
+          fn: function () {
+            setTimeout(function () { HY.startTour(s); }, 150);
+          }
+        },
+        { label: 'Entendido', kind: 'secondary', fn: function () { } }
+      ]
     });
   };
 
