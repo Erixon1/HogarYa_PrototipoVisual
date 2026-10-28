@@ -38,12 +38,23 @@
       }));
     });
 
-    /* Horas */
+    /* Horas: si el día elegido es "Hoy", se bloquean las horas previas a la disponibilidad del profesional */
     var hourChips = root.querySelector('#g-hour .chips');
+    var minTodayMinutes = 0;
+    if (d.day === 'Hoy' && p.when && p.when.indexOf('Hoy') === 0) {
+      var proHourStr = p.when.replace('Hoy,', '').trim();
+      minTodayMinutes = HY.hourToMinutes ? HY.hourToMinutes(proHourStr) : 0;
+    }
+
     HY.data.HOURS.forEach(function (h, i) {
+      var hMins = HY.hourToMinutes ? HY.hourToMinutes(h) : 0;
+      var isDisabled = (d.day === 'Hoy' && minTodayMinutes > 0 && hMins < minTodayMinutes);
+
       hourChips.appendChild(HY.choice({
-        name: 'hour', value: h, checked: d.hour === h, dataA: 'pickhour',
-        id: i === 0 ? 'hour-first' : null, ariaInvalid: !!e.hour, text: h
+        name: 'hour', value: h, checked: d.hour === h && !isDisabled, dataA: 'pickhour',
+        id: i === 0 ? 'hour-first' : null, ariaInvalid: !!e.hour, text: h,
+        disabled: isDisabled,
+        disabledTitle: isDisabled ? 'No disponible antes de las ' + proHourStr : null
       }));
     });
 
@@ -161,6 +172,11 @@
     var notice = root.querySelector('.notice.info');
     notice.insertAdjacentHTML('afterbegin', HY.ic('info'));
     notice.querySelector('span').textContent = 'No pagas nada ahora. El profesional confirmará el precio final contigo.';
+
+    var vibBtn = root.querySelector('#sw-req-vib');
+    if (vibBtn) {
+      vibBtn.setAttribute('aria-checked', String(HY.vibrationNow()));
+    }
 
     HY.put(root, 'foot', HY.footNode());
     return frag;

@@ -37,4 +37,19 @@
 
   HY.validateEmail = function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); };
 
+  /* Convierte textos de hora como "2:00 pm", "10:00 am", "12:00 m" a minutos desde medianoche */
+  HY.hourToMinutes = function (hStr) {
+    if (!hStr) return 0;
+    var s = hStr.toLowerCase().trim();
+    if (s === '12:00 m' || s === '12:00 pm' || s === '12:00m') return 12 * 60;
+    var isPm = s.indexOf('pm') > -1;
+    var clean = s.replace('am', '').replace('pm', '').replace('m', '').trim();
+    var parts = clean.split(':');
+    var h = parseInt(parts[0], 10) || 0;
+    var m = parseInt(parts[1], 10) || 0;
+    if (isPm && h < 12) h += 12;
+    if (!isPm && h === 12) h = 0;
+    return (h * 60) + m;
+  };
+
 })(window.HY);

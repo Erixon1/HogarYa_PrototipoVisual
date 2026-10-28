@@ -13,8 +13,7 @@
     'request', 'tracking', 'account', 'pro'
   ];
 
-  /* Descarga los archivos de plantillas y los registra en el documento
-     para poder clonarlos después con HY.tpl(). */
+  /* Carga los archivos de plantillas y los registra en el documento para poder clonarlos después con HY.tpl(). */
   HY.loadTemplates = function () {
     return Promise.all(FILES.map(function (f) {
       return fetch('assets/views/' + f + '.html').then(function (r) {
@@ -94,6 +93,13 @@
     if (o.dataId) input.setAttribute('data-id', o.dataId);
     if (o.dataF) input.setAttribute('data-f', o.dataF);
     if (o.ariaInvalid) input.setAttribute('aria-invalid', 'true');
+    if (o.disabled) {
+      input.setAttribute('disabled', '');
+      label.setAttribute('aria-disabled', 'true');
+      label.style.opacity = '0.45';
+      label.style.cursor = 'not-allowed';
+      if (o.disabledTitle) label.setAttribute('title', o.disabledTitle);
+    }
     if (o.text !== undefined) span.textContent = o.text;
     return label;
   };

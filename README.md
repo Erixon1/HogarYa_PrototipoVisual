@@ -232,6 +232,13 @@ el estado por completo).
 - Si las plantillas no se pueden cargar, el aviso se anuncia con
   `role="status"` en lugar de dejar la pantalla en blanco.
 
+### Accesibilidad y diseño inclusivo
+
+- **Visual (Daltonismo):** Selector de paletas optimizadas para *Deuteranopía* (verde débil), *Protanopía* (rojo débil), *Tritanopía* (azul débil) y *Acromático/Monocromo*. No se depende únicamente del color (iconos y texto explícito acompañan cada estado).
+- **Visual / Cognitiva (Baja visión y memoria de trabajo):** Selector de escala de fuente (`normal`, `large`, `xlarge`) con recalculación fluida sin desbordes; flujo en 3 pasos con resumen constante de elección ("Tu elección: ...").
+- **Auditiva / Ubicua (Hipoacusia y entornos ruidosos):** Notificaciones y confirmaciones con *vibración háptica opcional* (`navigator.vibrate`) en la confirmación de solicitud y en la vista de perfil, permitiendo percibir y confirmar alertas sin requerir sonido alguno.
+- **Motora:** Metas táctiles de 44 px mínimas, navegación total por teclado y trampa de foco accesible.
+
 ### Tema
 
 Tres preferencias: **Claro**, **Oscuro** y **Automático** (sigue al

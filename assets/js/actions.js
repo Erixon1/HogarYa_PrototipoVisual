@@ -56,6 +56,7 @@
     S.draft = null;
     HY.go('sent', { id: id }, { reset: true });
     HY.toast('Solicitud ' + id + ' enviada');
+    if (HY.vibratePulse) HY.vibratePulse([100, 50, 150]);
   }
 
   /* Actualiza la línea "Tu elección: ..." del paso 1. */
@@ -245,6 +246,11 @@
         HY.render();
         HY.say(S.proCfg.avail ? 'Disponible hoy activado' : 'Disponible hoy desactivado');
         break;
+      case 'a11y-vib':
+        var currentVib = HY.vibrationNow();
+        HY.setVibration(!currentVib);
+        HY.render();
+        break;
       case 'day':
         var k = +t.getAttribute('data-i'), ix = S.proCfg.days.indexOf(k);
         if (ix > -1) S.proCfg.days.splice(ix, 1); else S.proCfg.days.push(k);
@@ -263,6 +269,8 @@
 
     if (a === 'district') { S.district = t.value; HY.render(); }
     if (a === 'theme') { HY.setTheme(t.value); return; }
+    if (a === 'a11y-cb') { HY.setColorblind(t.value); return; }
+    if (a === 'a11y-font') { HY.setFontSize(t.value); return; }
     if (a === 'mode') {
       ui.vals = {}; ui.errors = {};
       ui.mode = t.value;
@@ -285,7 +293,17 @@
     }
     if (a === 'pickday') {
       S.draft.day = t.value;
-      if (ui.errors.day) { delete ui.errors.day; HY.render(); } else updateSel();
+      if (ui.errors.day) delete ui.errors.day;
+      if (S.draft.day === 'Hoy' && S.draft.hour) {
+        var p = HY.pro(S.draft.proId);
+        if (p && p.when && p.when.indexOf('Hoy') === 0) {
+          var minM = HY.hourToMinutes(p.when.replace('Hoy,', '').trim());
+          if (HY.hourToMinutes(S.draft.hour) < minM) {
+            S.draft.hour = ''; // resetea hora inválida
+          }
+        }
+      }
+      HY.render();
     }
     if (a === 'pickhour') {
       S.draft.hour = t.value;
