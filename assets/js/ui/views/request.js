@@ -176,6 +176,7 @@
     var vibBtn = root.querySelector('#sw-req-vib');
     if (vibBtn) {
       vibBtn.setAttribute('aria-checked', String(HY.vibrationNow()));
+      root.querySelector('[data-vib-hint]').textContent = HY.vibrationHint();
     }
 
     HY.put(root, 'foot', HY.footNode());
@@ -201,6 +202,21 @@
     ps[1].textContent = HY.cat(r.cat).name + ' con ' + r.proName;
     ps[1].appendChild(document.createElement('br'));
     ps[1].appendChild(document.createTextNode(r.when));
+
+    /* Canales de aviso: lo que el usuario recibe sin depender del sonido */
+    var on = HY.vibrationNow() && HY.vibrationSupported();
+    var dl = root.querySelector('dl.kv');
+    [['Pantalla', 'Activo: este aviso se queda visible'],
+     ['Vibración', on ? 'Activada' : (HY.vibrationNow() ? 'No disponible en este dispositivo' : 'Desactivada')]
+    ].forEach(function (c) {
+      var tr = HY.tpl('tpl-item-kv').firstElementChild;
+      tr.querySelector('dt').textContent = c[0];
+      tr.querySelector('dd').textContent = c[1];
+      dl.appendChild(tr);
+    });
+    var sw = root.querySelector('#sw-sent-vib');
+    sw.setAttribute('aria-checked', String(HY.vibrationNow()));
+    root.querySelector('[data-vib-hint]').textContent = HY.vibrationHint();
 
     return frag;
   };
