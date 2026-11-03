@@ -123,6 +123,7 @@
     if (vibBtn) {
       var isVib = HY.vibrationNow();
       vibBtn.setAttribute('aria-checked', String(isVib));
+      root.querySelector('[data-vib-hint]').textContent = HY.vibrationHint();
     }
 
     return frag;

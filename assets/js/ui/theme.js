@@ -74,27 +74,45 @@
   HY.fontNow = function () { return fontPref; };
   HY.vibrationNow = function () { return vibrationPref; };
 
+  var CB_NAMES = {
+    none: 'estándar, sin filtro', deuteranopia: 'para deuteranopía, verde débil',
+    protanopia: 'para protanopía, rojo débil', tritanopia: 'para tritanopía, azul débil',
+    monochrome: 'acromática, en blanco y negro'
+  };
+  var FONT_NAMES = { normal: 'normal', large: 'grande', xlarge: 'extra grande' };
+
   HY.setColorblind = function (cb) {
     colorblindPref = cb;
     try { localStorage.setItem(CB_KEY, cb); } catch (e) { }
     document.documentElement.setAttribute('data-colorblind', cb);
-    HY.say('Paleta de daltonismo cambiada a: ' + cb);
+    HY.say('Paleta de colores ' + (CB_NAMES[cb] || cb) + ' activada');
   };
 
   HY.setFontSize = function (size) {
     fontPref = size;
     try { localStorage.setItem(FONT_KEY, size); } catch (e) { }
     document.documentElement.setAttribute('data-font-size', size);
-    HY.say('Tamaño de texto ajustado a: ' + size);
+    HY.say('Tamaño del texto ' + (FONT_NAMES[size] || size));
+  };
+
+  /* La vibración solo existe en algunos dispositivos (no en escritorio ni en iPhone):
+     el prototipo lo dice con claridad en vez de aparentar que funciona. */
+  HY.vibrationSupported = function () { return typeof navigator.vibrate === 'function'; };
+
+  HY.vibrationHint = function () {
+    return HY.vibrationSupported()
+      ? 'Vibra al enviar la solicitud. El aviso siempre queda también escrito en pantalla.'
+      : 'Este dispositivo no admite vibración: el aviso queda escrito en pantalla.';
   };
 
   HY.setVibration = function (enable) {
     vibrationPref = !!enable;
     try { localStorage.setItem(VIB_KEY, String(vibrationPref)); } catch (e) { }
-    if (vibrationPref && navigator.vibrate) {
+    if (vibrationPref && HY.vibrationSupported()) {
       navigator.vibrate([80, 40, 80]);
     }
-    HY.say(vibrationPref ? 'Vibración táctil activada' : 'Vibración táctil desactivada');
+    HY.say(!vibrationPref ? 'Vibración desactivada'
+      : HY.vibrationSupported() ? 'Vibración activada' : 'Vibración activada, pero este dispositivo no la admite');
   };
 
   HY.vibratePulse = function (pattern) {
