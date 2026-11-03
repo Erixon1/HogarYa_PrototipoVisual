@@ -238,6 +238,10 @@ el estado por completo).
 - **Visual / Cognitiva (Baja visión y memoria de trabajo):** Selector de escala de fuente (`normal`, `large`, `xlarge`) con recalculación fluida sin desbordes; flujo en 3 pasos con resumen constante de elección ("Tu elección: ...").
 - **Auditiva / Ubicua (Hipoacusia y entornos ruidosos):** Notificaciones y confirmaciones con *vibración háptica opcional* (`navigator.vibrate`) en la confirmación de solicitud y en la vista de perfil, permitiendo percibir y confirmar alertas sin requerir sonido alguno.
 - **Motora:** Metas táctiles de 44 px mínimas, navegación total por teclado y trampa de foco accesible.
+- **Avisos:** el aviso de confirmación dura 9 s, se pausa con el puntero o el foco y tiene el botón «Cerrar aviso». La pantalla «Solicitud enviada» muestra el estado de cada canal (pantalla y vibración) y permite activar la vibración ahí mismo; si el dispositivo no admite `navigator.vibrate`, lo dice en pantalla.
+- **Lectores de pantalla:** los cambios de paleta y de tamaño de texto se anuncian con frases completas, no con códigos internos.
+- **Texto grande:** el selector de apariencia pasa a varias filas con texto extra grande a 360 px, sin recortar opciones.
+- Resultados medidos el 1 de noviembre de 2026 (Playwright + axe-core): 0 violaciones en 5 paletas × 2 temas × 6 pantallas; 0 objetivos menores de 44 px; 0 desbordes con texto grande a 360 px.
 
 ### Tema
 
