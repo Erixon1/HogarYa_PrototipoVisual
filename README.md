@@ -1,7 +1,7 @@
 # HogarYa · prototipo v3.0 (estructura modular)
 
 Prototipo web de una plataforma de contratación de servicios para el hogar.
-APF2 · Interacción Hombre-Máquina · Grupo 13.
+APF3 · Interacción Hombre-Máquina · Grupo 13.
 
 
 
